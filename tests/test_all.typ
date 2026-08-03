@@ -9,6 +9,7 @@
   read-csv-data,
   field,
   fmt-field,
+  bind-field,
   join-fields,
   if-field,
   is-empty,
@@ -38,13 +39,19 @@
 #assert.eq(field(test-rec, "Empty", default: "N/A"), "N/A")
 [✔] Test 1: Field getter & smart key lookup passed.
 
-// Test 2: Field formatters
+// Test 2: Field formatters & Bound #f("Key") syntax
 #assert.eq(fmt-field(test-rec, "First Name", fmt: "upper"), "ALICE")
 #assert.eq(fmt-field(test-rec, "Last Name", fmt: "lower"), "smith")
 #assert.eq(fmt-field(test-rec, "City", fmt: "title"), "New York")
 #assert.eq(fmt-field(test-rec, "Missing", fmt: "upper", default: "NONE"), "NONE")
 #assert.eq(fmt-field(("price": "50"), "price", fmt: "currency"), "$50")
-[✔] Test 2: Field formatters (upper, lower, title, currency) passed.
+
+// Test bound #f("Key") syntax
+#let f = bind-field(test-rec)
+#assert.eq(f("First Name"), "Alice")
+#assert.eq(f("Last Name", fmt: "upper"), "SMITH")
+#assert.eq(f("City", fmt: "title"), "New York")
+[✔] Test 2: Field formatters & bound #f("Key") syntax passed.
 
 // Test 3: Join fields & conditional helpers
 #let addr-rec = ("Addr1": "100 Main St", "Addr2": "", "City": "Boston", "State": "MA")

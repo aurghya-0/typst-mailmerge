@@ -59,62 +59,59 @@
   })
 }
 
-/// Retrieves a field value from a record with fallback and smart key lookup.
-/// Supports candidate key arrays (e.g., ("First Name", "FirstName", "Name")) and flexible key normalization.
+/// Retrieves and optionally formats a field value from a record with fallback and smart key lookup.
+/// Supports candidate key arrays (e.g., ("First Name", "FirstName", "Name")), flexible key normalization, and formatting.
 /// - record (dictionary): The record dictionary.
 /// - key (str | array): Field key or array of candidate keys to search for.
+/// - fmt (none | str | function): Formatting option ("upper", "lower", "title", "currency", or custom function `val => content`).
 /// - default (any): Fallback value if field is not found or empty.
 /// -> any
-#let field(record, key, default: "") = {
+#let field(record, key, fmt: none, default: "") = {
   if type(record) != dictionary {
     return default
   }
 
+  let val = default
   let candidate-keys = if type(key) == array { key } else { (key,) }
 
   // 1. Direct match check
   for k in candidate-keys {
     let k-str = str(k)
     if k-str in record {
-      let val = str(record.at(k-str)).trim()
-      if val != "" {
-        return val
+      let v = str(record.at(k-str)).trim()
+      if v != "" {
+        val = v
+        break
       }
     }
   }
 
-  // 2. Normalized key match check (ignores case, spaces, underscores, hyphens)
-  let normalized-map = (:)
-  for (k, v) in record.pairs() {
-    normalized-map.insert(normalize-key(k), v)
-  }
+  if val == default {
+    // 2. Normalized key match check (ignores case, spaces, underscores, hyphens)
+    let normalized-map = (:)
+    for (k, v) in record.pairs() {
+      normalized-map.insert(normalize-key(k), v)
+    }
 
-  for k in candidate-keys {
-    let nk = normalize-key(k)
-    if nk in normalized-map {
-      let val = str(normalized-map.at(nk)).trim()
-      if val != "" {
-        return val
+    for k in candidate-keys {
+      let nk = normalize-key(k)
+      if nk in normalized-map {
+        let v = str(normalized-map.at(nk)).trim()
+        if v != "" {
+          val = v
+          break
+        }
       }
     }
   }
 
-  return default
-}
-
-/// Formats a field value using built-in format presets or a custom function.
-/// - record (dictionary): The record dictionary.
-/// - key (str | array): Field key name.
-/// - fmt (none | str | function): Formatting option ("upper", "lower", "title", "currency", or custom function `val => content`).
-/// - default (any): Default fallback if value is missing.
-/// -> content | str
-#let fmt-field(record, key, fmt: none, default: "") = {
-  let val = field(record, key, default: default)
   if val == default or val == "" {
     return default
   }
 
-  if type(fmt) == function {
+  if fmt == none {
+    return val
+  } else if type(fmt) == function {
     return fmt(val)
   } else if fmt == "upper" {
     return upper(val)
@@ -137,6 +134,21 @@
 
   return val
 }
+
+/// Formats a field value using built-in format presets or a custom function.
+/// - record (dictionary): The record dictionary.
+/// - key (str | array): Field key name.
+/// - fmt (none | str | function): Formatting option ("upper", "lower", "title", "currency", or custom function `val => content`).
+/// - default (any): Default fallback if value is missing.
+/// -> content | str
+#let fmt-field(record, key, fmt: none, default: "") = {
+  field(record, key, fmt: fmt, default: default)
+}
+
+/// Binds a record to the field getter for concise `#f("Field Name")` template syntax.
+/// - record (dictionary): The record dictionary.
+/// -> function `(key, fmt: none, default: "") => ...`
+#let bind-field(record) = field.with(record)
 
 /// Joins multiple non-empty field values with a separator (ideal for address lines).
 /// - record (dictionary): The record dictionary.

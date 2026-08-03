@@ -179,8 +179,9 @@ Pre-configured grid dimensions for standard label sheets:
 
 ### 🔧 Utility Functions
 
-- **`field(record, key, default: "")`**: Retrieves a field value with smart key normalization (matches `"First Name"`, `"first_name"`, `"First-Name"` or candidate array `("FirstName", "Name")`).
-- **`fmt-field(record, key, fmt: none, default: "")`**: Formats field value using `"upper"`, `"lower"`, `"title"`, `"currency"`, or custom closure.
+- **`field(record, key, fmt: none, default: "")`**: Retrieves and optionally formats a field value with smart key normalization (matches `"First Name"`, `"first_name"`, `"First-Name"` or candidate array `("FirstName", "Name")`). Supports `fmt: "upper"`, `"lower"`, `"title"`, `"currency"`, or custom function.
+- **`bind-field(record)`**: Binds a record to `field` for ultra-concise `#f("Field Name")` template syntax (`let f = bind-field(record)` or `let f = field.with(record)`).
+- **`fmt-field(record, key, fmt: none, default: "")`**: Alias for `field(record, key, fmt: fmt, default: default)`.
 - **`join-fields(record, keys, separator: ", ", default: "")`**: Joins multiple non-empty fields, automatically omitting blank optional lines.
 - **`if-field(record, key, then-content, else-content: [])`**: Conditionally renders `then-content` when field is present and non-empty.
 - **`is-empty(record, key)`** / **`is-non-empty(record, key)`**: Helper predicates for conditional checks.

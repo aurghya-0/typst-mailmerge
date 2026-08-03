@@ -6,6 +6,7 @@
   read-csv-data,
   field,
   fmt-field,
+  bind-field,
   join-fields,
   if-field,
   is-empty,
