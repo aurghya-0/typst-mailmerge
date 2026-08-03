@@ -67,7 +67,7 @@
   ),
 
   // Avery L7160 - Metric A4 Address Labels (3 columns x 7 rows = 21 per sheet, A4)
-  avery-L7160: (
+  avery-l7160: (
     columns: 3,
     rows: 7,
     width: 63.5mm,
@@ -80,7 +80,7 @@
   ),
 
   // Avery L7163 - Metric A4 Address Labels (2 columns x 7 rows = 14 per sheet, A4)
-  avery-L7163: (
+  avery-l7163: (
     columns: 2,
     rows: 7,
     width: 99.1mm,

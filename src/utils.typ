@@ -213,10 +213,10 @@
 
 /// Helper to check if current record is the first in the merged dataset.
 #let is-first-record(record) = {
-  record.at("_is_first", default: true)
+  record.at("_is-first", default: true)
 }
 
 /// Helper to check if current record is the last in the merged dataset.
 #let is-last-record(record) = {
-  record.at("_is_last", default: true)
+  record.at("_is-last", default: true)
 }

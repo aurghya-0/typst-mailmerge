@@ -64,10 +64,10 @@
   records.enumerate().map(((idx, r)) => {
     let rec = r
     rec.insert("_index", idx + 1)
-    rec.insert("_zero_index", idx)
+    rec.insert("_zero-index", idx)
     rec.insert("_total", final-count)
-    rec.insert("_is_first", idx == 0)
-    rec.insert("_is_last", idx == final-count - 1)
+    rec.insert("_is-first", idx == 0)
+    rec.insert("_is-last", idx == final-count - 1)
     rec
   })
 }
