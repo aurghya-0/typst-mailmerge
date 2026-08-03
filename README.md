@@ -4,6 +4,20 @@ A powerful, flexible, and production-ready **Mail Merge** package for Typst. Eas
 
 ---
 
+## 📚 Documentation & Wiki
+
+Explore our complete **[GitHub Wiki](https://github.com/aurghya-0/typst-mailmerge/wiki)** for detailed guides, API reference, preset specs, and examples:
+
+- 🚀 **[Getting Started](https://github.com/aurghya-0/typst-mailmerge/wiki/Getting-Started)** — Installation, CSV data loading, and first merge letter setup.
+- 📄 **[Document Mail Merge](https://github.com/aurghya-0/typst-mailmerge/wiki/Document-Mail-Merge)** — Multi-page documents & page counter resets.
+- 🏷️ **[Label & Badge Sheets](https://github.com/aurghya-0/typst-mailmerge/wiki/Label-&-Badge-Sheets)** — Avery sticker presets, grid layout engine, cut lines & cell fills.
+- 🔧 **[Fields & Formatters](https://github.com/aurghya-0/typst-mailmerge/wiki/Fields-&-Formatters)** — Smart key normalization, currency formatters, and address cleaner.
+- 🔀 **[Filtering, Sorting & Pagination](https://github.com/aurghya-0/typst-mailmerge/wiki/Filtering,-Sorting-&-Pagination)** — Filtering conditions, custom sorting, reversing, and batch pagination.
+- 📊 **[API Reference](https://github.com/aurghya-0/typst-mailmerge/wiki/API-Reference)** — Full signature and parameter documentation.
+- 💡 **[Examples & Templates](https://github.com/aurghya-0/typst-mailmerge/wiki/Examples-&-Templates)** — Ready-to-use Typst code templates.
+
+---
+
 ## ✨ Features
 
 - 📑 **Document Mail Merge (`mail-merge`)**: Seamless single or multi-page personalized document generation.
@@ -196,14 +210,14 @@ Pre-configured grid dimensions for standard label sheets:
 
 Check out the `examples/` directory for full working `.typ` templates:
 
-1. [`examples/letter_merge.typ`](file:///home/aurghya/Coding/typst/Typst-MailMerge/examples/letter_merge.typ) — Personalized letters and invoices.
-2. [`examples/certificate_merge.typ`](file:///home/aurghya/Coding/typst/Typst-MailMerge/examples/certificate_merge.typ) — Landscape certificate of completion templates.
-3. [`examples/label_merge.typ`](file:///home/aurghya/Coding/typst/Typst-MailMerge/examples/label_merge.typ) — Address sticker sheets and conference name badges.
-4. [`examples/envelope_merge.typ`](file:///home/aurghya/Coding/typst/Typst-MailMerge/examples/envelope_merge.typ) — DL envelope printing.
-5. [`examples/advanced_features.typ`](file:///home/aurghya/Coding/typst/Typst-MailMerge/examples/advanced_features.typ) — Advanced sorting, filtering, statistics, and inline array data.
+1. [`examples/letter_merge.typ`](examples/letter_merge.typ) — Personalized letters and invoices.
+2. [`examples/certificate_merge.typ`](examples/certificate_merge.typ) — Landscape certificate of completion templates.
+3. [`examples/label_merge.typ`](examples/label_merge.typ) — Address sticker sheets and conference name badges.
+4. [`examples/envelope_merge.typ`](examples/envelope_merge.typ) — DL envelope printing.
+5. [`examples/advanced_features.typ`](examples/advanced_features.typ) — Advanced sorting, filtering, statistics, and inline array data.
 
 ---
 
 ## 📄 License
 
-Distributed under the [MIT License](file:///home/aurghya/Coding/typst/Typst-MailMerge/LICENSE).
+Distributed under the [MIT License](LICENSE).
